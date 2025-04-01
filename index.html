@@ -1,0 +1,87 @@
+{%  extends 'base.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}BookStore{% endblock %}
+</head>
+<body>
+    {% block body %}
+    {% comment %}
+    {% include 'header.html' %}
+   
+
+    
+    <center>
+        <h1>Welcome to BookStore</h1>    
+        <hr />
+        {% comment %}
+        <h5> You login at <i>{{curdate}}</i></h5>
+        
+        <h3><mark>Good morning {{myname}}
+        
+
+
+        {% with lastname="borivali" %}
+           {{lastname}}
+        {% endwith %}
+
+        
+        <!--dtl if else -->
+        {% if hour >= 1 and hour < 12 %}
+        good morning {{myname}}
+        {% elif hour >= 12 and hour <= 16 %}
+        good afternoon {{myname}}
+        {% elif hour > 16 and hour <= 19 %}
+        good evening {{myname}}
+        {% elif hour > 19 and hour <= 24 %}
+        good night {{myname}}
+        {% endif %}
+        </mark>
+        </h3>
+        {% endcomment %}
+
+        <!-- showing book data-->
+         <h1>Book Details</h1>
+         <table class="table table-striped">
+            <thead>
+                <th>sr.no</th>
+                <th>isbn</th>
+                <th>title</th>
+                <th>author</th>
+                <th>category</th>
+                <th>price</th>
+                <th>quantity</th>
+                <th>dop</th>
+                <th>description</th>
+                <th>photo</th>
+            </thead>
+            <tbody>
+                {% for x in allBooks %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{x.isbn}}</td>
+                    <td>{{x.title}}</td>
+                    <td>{{x.author}}</td>
+                    <td>{{x.category}}</td>
+                    <td>{{x.price}}</td>
+                    <td>{{x.qty}}</td>
+                    <td>{{x.dop}}</td>
+                    <td>{{x.description}}</td>
+                    <td>
+                        <img src="{{x.photo.url}}" alt="{{x.title}}" width="300px" height="200px">
+                    </td>
+              </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+    {% endblock %}
+    {% comment %}
+    {% include 'footer.html' %}
+    {% endcomment %}
+</body>
+</html>
